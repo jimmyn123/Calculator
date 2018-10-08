@@ -7,14 +7,16 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
+            // while a valid number between 1 and 4 is not inputted (can make a function to use for all three of these)
             bool valid;
             int selection;
             do
             {
-                WriteLine("Choose an operation 1) Addition 2) Subtraction 3) Division 4) Multiplication: ");
+                WriteLine("Choose an operation 1) Addition 2) Subtraction 3) Multiplication 4) Division: ");
                 valid = int.TryParse(ReadLine(), out selection);
             } while (!valid || selection > 4 || selection < 1);
 
+            // while a valid number is not inputted
             decimal x;
             do
             {
@@ -22,6 +24,7 @@ namespace Calculator
                 valid = decimal.TryParse(ReadLine(), out x);
             } while (!valid);
 
+            // can throw these into functions to reduce redundancy...but lazy haha
             decimal y;
             do
             {
@@ -29,46 +32,57 @@ namespace Calculator
                 valid = decimal.TryParse(ReadLine(), out y);
             } while (!valid);
 
+
+            // switch that calls each individual function
+            decimal answer;
             switch (selection)
             {
                 case 1:
-                    Add(x, y);
+                    answer = Add(x, y);
                     break;
                 case 2:
-                    Subtract(x, y);
+                    answer = Subtract(x, y);
                     break;
                 case 3:
-                    Multiply(x, y);
+                    answer = Multiply(x, y);
                     break;
                 default: // defaults to 4 since we checked for 1 through 4 earlier
-                    Divide(x, y);
+                    answer = Divide(x, y);
                     break;
             }
+
+            // writes out the answer
+            WriteLine($"Answer: {answer}");
         }
 
+        // function that adds
         static decimal Add(decimal x, decimal y)
         {
             return x + y; 
         }
 
+        // function that subtracts
         static decimal Subtract(decimal x, decimal y)
         {
             return x - y;
         }
 
+        // function that multiplies
         static decimal Multiply(decimal x, decimal y)
         {
             return x * y;
         }
 
+        // function that divides
         static decimal Divide(decimal x, decimal y)
         {
             try
             {
                 return x / y;
             }
-            catch (DivideByZeroException ex)
+            catch (DivideByZeroException)
             {
+                // yells at people not to divide by 0
                 WriteLine("Can't divide by 0!");
                 return 0;
             }
