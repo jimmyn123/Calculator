@@ -21,3 +21,4 @@ Output to the console the answer to the proposed math problem.
 
 ## Screenshot
 ![Finished](/images/finished.png)
+
