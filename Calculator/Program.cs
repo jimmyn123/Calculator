@@ -8,21 +8,47 @@ namespace Calculator
         static void Main(string[] args)
         {
             bool valid;
+            int selection;
             do
             {
                 WriteLine("Choose an operation 1) Addition 2) Subtraction 3) Division 4) Multiplication: ");
-                int selection;
                 valid = int.TryParse(ReadLine(), out selection);
+            } while (!valid || selection > 4 || selection < 1);
+
+            decimal x;
+            do
+            {
+                WriteLine("Insert valid operand (number):");
+                valid = decimal.TryParse(ReadLine(), out x);
             } while (!valid);
 
-            WriteLine("Insert first operand:");
-            decimal x;
-            decimal.TryParse(ReadLine(), out x);
+            decimal y;
+            do
+            {
+                WriteLine("Insert valid operand (number):");
+                valid = decimal.TryParse(ReadLine(), out y);
+            } while (!valid);
+
+            switch (selection)
+            {
+                case 1:
+                    Add(x, y);
+                    break;
+                case 2:
+                    Subtract(x, y);
+                    break;
+                case 3:
+                    Multiply(x, y);
+                    break;
+                default: // defaults to 4 since we checked for 1 through 4 earlier
+                    Divide(x, y);
+                    break;
+            }
         }
 
         static decimal Add(decimal x, decimal y)
         {
-            return x + y;
+            return x + y; 
         }
 
         static decimal Subtract(decimal x, decimal y)
