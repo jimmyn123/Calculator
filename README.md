@@ -20,4 +20,4 @@ Each of these methods should take in 2 parameters, and return the solution of th
 Output to the console the answer to the proposed math problem.
 
 ## Screenshot
-![Finished] (/images/finished.png)
+![Finished](/images/finished.png)
